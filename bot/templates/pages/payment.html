@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="">Выберите способ оплаты:</h1>
+    <div class="row">
+        <div class="col-md-6 col-lg-6 mb-4">
+            <div class="payment-option">
+                <div class="d-flex  align-items-center mb-3">
+                    <img class="flex-end" src="{% static 'sber.svg' %}" alt="SberBank" width="30">
+                    <h3 class="my-0 mx-3">Перевод на карту СберБанк</h3>
+                </div>
+                <p>Оплатите счет, переведя деньги на указанный номер карты.
+                    <br>После оплаты нажмите на кнопку оплатил и отправьте чек об оплате.</p>
+                <p>Номер карты: 5469 1200 1589 4925</p>
+                <a href="https://t.me/TR_GAMEbot" class="btn btn-outline-secondary">Оплатил</a>
+            </div>
+        </div>
+        <!--        <div class="col-md-6 col-lg-6 mb-4">-->
+        <!--            <div class="payment-option">-->
+        <!--                <div class="d-flex  align-items-center mb-3">-->
+        <!--                    <img class="flex-end" src="{% static 'qiwi.svg' %}" alt="Qiwi" width="30">-->
+        <!--                    <h3 class="my-0 mx-3">Qiwi</h3>-->
+        <!--                </div>-->
+        <!--                <p>Оплатите счет через сервис Qiwi.</p>-->
+        <!--                <p>Номер Киви: +7 911 511 86-75</p>-->
+        <!--                <a href="https://t.me/TR_GAMEbot" class="btn btn-outline-secondary">Оплатил</a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="col-md-6 col-lg-6 mb-4">-->
+        <!--            <div class="payment-option">-->
+        <!--                <div class="d-flex  align-items-center mb-3">-->
+        <!--                    <img class="flex-end" src="{% static 'usdt.svg' %}" alt="Qiwi" width="30">-->
+        <!--                    <h3 class="my-0 mx-3">Криптовалюта</h3>-->
+        <!--                </div>-->
+        <!--                <p>Оплатите счет с помощью криптовалюты.</p>-->
+        <!--                <p class="fw-bold">USDT (Tether USDT)</p>-->
+        <!--                <p class="fw-bold">Сеть TRC20</p>-->
+        <!--                <p>Адрес кошелька: <b>TELH7KhgSrSKz8DjQDrrE3vctMDNwB9uaf</b></p>-->
+        <!--                <a href="https://t.me/TR_GAMEbot" class="btn btn-outline-secondary">Оплатил</a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="col-md-6 col-lg-6 mb-4">
+            <div class="payment-option">
+                <div class="d-flex  align-items-center mb-3">
+                    <img class="flex-end" src="{% static 'tinkoff.svg' %}" alt="Tinkoff" width="30">
+                    <h3 class="my-0 mx-3">Перевод на карту Тинкофф</h3>
+                </div>
+                <p>Оплатите счет, перейдя по ссылке оплаты.
+                    <br>После оплаты нажмите на кнопку оплатил и отправьте чек об оплате.</p>
+                <p><a class="text-decoration-none text-info"
+                      href="https://www.tinkoff.ru/rm/pankratov.artem34/BTDcp73404">Оплатить счет</a></p>
+                <a href="https://t.me/TR_GAMEbot" class="btn btn-outline-secondary">Оплатил</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

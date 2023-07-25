@@ -1,0 +1,110 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="">Часто задаваемые вопросы:</h1>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1"
+                        aria-expanded="true" aria-controls="faqCollapse1">
+                    Как проходит оплата подписок?
+                </button>
+            </h2>
+            <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Оплата подписок зависит от выбранного сервиса, в пример возьмём PlayStation Plus:<br><br>
+
+                    1. Для оплаты PS+ мы создаем аккаунт в турецком PlayStationStore. <br>
+                    2. Заходим в этот аккаунт, подключаем подписку и передаем аккаунт вам. <br>
+                    3. Вы меняете пароль и пользуетесь подпиской. <br>
+                    4. Если у вас уже есть турецкий аккаунт, то покупаем на него.<br><br>
+
+                    В дальнейшем вы можете играть со своего основного аккаунта. <br>
+                    А для загрузки игр и прочих бонусов PS+ используйте турецкий аккаунт.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                    Какие методы оплаты вы принимаете?
+                </button>
+            </h2>
+            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Вы можете оплатить подписку несколькими способами<br><br>
+
+                    Перевод на карту Сбербанка или Тинькофф<br>
+                    Сбербанк - <b>5469 1200 1589 4925</b> | Артём Алексеевич П | Комментарии указывать не нужно<br>
+                    Тинькофф - <b>2200 7004 0991 2150</b> | Артём Алексеевич П | Комментарии указывать не нужно<br>
+                    По номеру телефона - <b>8 911 511 86-75</b> | Тинькофф или Сбербанк Артём Алексеевич П<br><br>
+
+                    Оплатить любой картой РФ на сайте - pankratoff.com или прямо в боте<br><br>
+
+                    Оплата USDT - уточнять у менеджера кошелёк
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                    Как быстро я получу доступ к приобретенному товару?
+                </button>
+            </h2>
+            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Сроки выдачи: от 15 минут до 12 часов. <br>
+                    Стараемся как можно быстрее.<br>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                    Какие гарантии безопасности?
+                </button>
+            </h2>
+            <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    После приобретения аккаунта, вы получите все необходимые доступы к нему. <br>
+                    Вы сможете сменить пароль, привязать почту и телефон, чтобы обеспечить дополнительную защиту вашего
+                    аккаунта.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading5">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                    Как связаться с технической поддержкой или менеджером?
+                </button>
+            </h2>
+            <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    <div class="manager">
+                        <img src="{% static 'Менеджер.png' %}" alt="Менеджер" width="50">
+                        <a class="text-decoration-none text-dark btn btn-outline-secondary"
+                           href="https://t.me/Artem_media_crypto">Менеджер</a>
+                    </div>
+                    <div class="manager">
+                        <img src="{% static 'Поддержка.png' %}" alt="Поддержка" width="50">
+                        <a class="text-decoration-none text-dark btn btn-outline-secondary"
+                           href="https://t.me/Artem_media_crypto">Техническая поддержка</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Добавьте другие вопросы и ответы по аналогии -->
+    </div>
+</div>
+{% endblock %}

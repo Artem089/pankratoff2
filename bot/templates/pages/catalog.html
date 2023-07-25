@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container filter pt-5 mb-4 d-flex justify-content-between border-bottom border-secondary">
+    <div class="mb-4">
+        {% if not request.GET.category %}
+        <a class="btn">Все</a>
+        {% else %}
+        <a class="btn" href="{% url 'catalog' %}" data-filter="all">Все</a>
+        {% endif %}
+        {% for category in categories %}
+        <a class="btn" href="{% url 'catalog' %}?category={{ category.pk }}"
+           data-filter="{{ category.pk }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+    <form action="{% url 'catalog' %}" method="GET">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Найти сервис">
+            <button type="submit" class="btn btn-secondary">Найти</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                <img class="product_img" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.country }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text m-0">{{ product.price }} ₽</p>
+                        <a href="{% url 'detail' product.pk %}" class="btn btn-outline-secondary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

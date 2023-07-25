@@ -1,0 +1,177 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row my-5 align-items-center justify-content-evenly gx-5">
+        <div class="col-12 col-lg-5">
+            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="fw-bold text-black">{{ product.name }}</h2>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <p class="fs-6 my-2">Осталось на складе: <b>{{ product.quantity }}</b></p>
+                </li>
+                <li class="nav-item">
+                    {% if product.country %}
+                    <p class="card-text my-2">{{ product.country }}</p>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    {% if product.description %}
+                    <p class="card-text">{{ product.description }}</p>
+                    {% endif %}
+                </li>
+                <li class="nav-item ">
+                    {% if product.price %}
+                    <p class="card-text my-4">{{ product.price }} ₽</p>
+                    {% endif %}
+                </li>
+            </ul>
+            <button class="btn btn-outline-secondary  btn-lg fw-semibold mt-auto" data-bs-toggle="modal"
+                    data-bs-target="#paymentModal">Сделать заказ
+            </button>
+        </div>
+    </div>
+    <div class="my-5">
+        <h2 class="pt-5 mt-5 text-center fw-bold text-uppercase mb-4">Тарифы</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 justify-content-evenly">
+            {% for product in products %}
+            <div class="col">
+                <div class="card">
+                    <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <p class="fs-5">{{ product.name }}</p>
+                        <div class="my-2"><b>Цена: </b> {{ product.price }} &#8381;</div>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'detail' product.pk %}" class="btn btn-outline-secondary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="paymentModalLabel">Оплата</h2>
+                <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="paymentForm" method="post" action="{% url 'save_payment' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Name" class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="Name" name="name" placeholder="Введите имя">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Telegram" class="form-label">Логин Telegram</label>
+                        <input type="text" class="form-control" id="Telegram" name="telegram"
+                               placeholder="@login_telegram">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Product" class="form-label">Выберите товар</label>
+                        <select class="form-select" id="Product" name="product">
+                            <option selected disabled>Выберите товар</option>
+                            {% for p in products %}
+                            {% if p.category == product.category %}
+                            <option value="{{ p.pk }}">{{ p.name }}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="Policy" name="policy">
+                        <label class="form-check-label" for="Policy">Согласен с
+                            <a style="color: #98A1B0; border-bottom: 1px solid #98A1B0; text-decoration: none;"
+                               href="/policy/">политикой конфиденциальности</a> и
+                            <a style="color: #98A1B0; border-bottom: 1px solid #98A1B0; text-decoration: none;"
+                               href="#">офертой</a></label>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary" id="submitButton">Сформировать заказ!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="{% static 'js/main.js' %}"></script>
+
+<script>
+    // Объявляем переменную paymentModal за пределами функций
+    var paymentModal;
+
+    document.getElementById('submitButton').addEventListener('click', function () {
+        // Получение значений полей формы
+        var name = document.getElementById('Name').value;
+        var telegram = document.getElementById('Telegram').value;
+        var product = document.getElementById('Product').value;
+        var policyChecked = document.getElementById('Policy').checked;
+
+        // Проверка полей
+        if (!name || !telegram || !product || !policyChecked) {
+            alert('Пожалуйста, заполните все поля и согласитесь с политикой конфиденциальности, офертой!');
+            return;
+        }
+
+        // Отправка данных на сервер через AJAX
+        var xhr = new XMLHttpRequest();
+        var url = "{% url 'save_payment' %}";
+        var data = new FormData();
+        data.append('name', name);
+        data.append('telegram', telegram);
+        data.append('product', product);
+        data.append('policy', policyChecked);
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('X-CSRFToken', "{{ csrf_token }}");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        // Успешно сохранено
+                        alert('Заказ сформирован, оплатите товар!');
+                        paymentModal.hide(); // Закрываем модальное окно, используя ранее объявленную переменную
+                        document.getElementById('paymentForm').reset(); // Сбрасываем форму после закрытия окна
+
+                        // Перенаправляем пользователя на страницу каталога
+                        window.location.href = "{% url 'payment' %}";
+                    } else {
+                        // Ошибка валидации формы
+                        alert(response.error);
+                    }
+                } else {
+                    // Ошибка сервера
+                    alert('Ошибка сервера. Пожалуйста, попробуйте еще раз.');
+                }
+            }
+        };
+        xhr.send(data);
+    });
+
+    // Закрытие модального окна при открытии другого окна
+    document.getElementById('paymentModal').addEventListener('hidden.bs.modal', function () {
+        // Сброс формы при закрытии окна
+        document.getElementById('paymentForm').reset();
+    });
+
+    // Создание объекта paymentModal при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function () {
+        paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+    });
+
+</script>
+
+
+{% endblock %}
