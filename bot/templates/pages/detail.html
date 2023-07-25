@@ -8,7 +8,7 @@
         <div class="col-12 col-lg-5">
             <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 py-3">
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="fw-bold text-black">{{ product.name }}</h2>
             </div>
@@ -32,7 +32,7 @@
                     {% endif %}
                 </li>
             </ul>
-            <button class="btn btn-outline-secondary  btn-lg fw-semibold mt-auto" data-bs-toggle="modal"
+            <button class="btn btn-outline-secondary btn-lg fw-semibold mt-3" data-bs-toggle="modal"
                     data-bs-target="#paymentModal">Сделать заказ
             </button>
         </div>
@@ -41,7 +41,7 @@
         <h2 class="pt-5 mt-5 text-center fw-bold text-uppercase mb-4">Тарифы</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 justify-content-evenly">
             {% for product in products %}
-            <div class="col">
+            <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
                     <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                     <div class="card-body">
