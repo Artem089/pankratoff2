@@ -52,58 +52,76 @@ main.main {
 }
 
 
-@media (max-width: 768px) {
-      .filter {
-            flex-direction: column;
-      }
-      .input-group{
-            padding-bottom: 20px;
-      }
-      .accordion-body{
-            font-size: 40px;
-      }
-      .accordion-item button{
-            font-size: 50px;
-      }
-      .faqs h1{
-            font-size: 80px;
-      }
-      .manager img{
-            width: 100px;
-      }
-      .manager a{
-            font-size: 40px;
-      }
-      .collapse a{
-            font-size: 30px;
-      }
-      .footer p,a{
-            font-size: 30px;
-      }
+@media (min-width: 768px) {
 
 }
 
-@media (max-width: 1100px){
-       .pay_h1{
-            font-size: 60px;
-      }
-      .pay p{
-            font-size: 30px;
-      }
-      .pay h3, a{
-            font-size: 40px;
-      }
-      .pay-btn{
-            font-size: 40px;
-      }
-      .payment-option img{
-            width: 100px;
-      }
-}
-
-@media (max-width: 576px){
+@media (min-width: 1100px){
 
 }
+
+@media (min-width: 300px){
+
+}
+
+@media (max-width: 1400px) {
+    .filter{
+        flex-wrap: wrap !important;
+    }
+    .input-group{
+        padding-bottom: 20px;
+    }
+    .pay_h1{
+        font-size: 60px;
+    }
+    .pay p{
+        font-size: 30px;
+    }
+    .pay h3, a{
+        font-size: 40px;
+    }
+    .pay-btn{
+        font-size: 40px;
+    }
+    .payment-option img{
+        width: 100px;
+    }
+  }
+
+@media (max-width: 990px) {
+    .accordion-body{
+        font-size: 40px;
+    }
+    .accordion-item button{
+        font-size: 50px;
+    }
+    .faqs h1{
+        font-size: 80px;
+    }
+    .manager img{
+        width: 100px;
+    }
+    .manager a{
+        font-size: 40px;
+    }
+    .collapse a{
+        font-size: 20px;
+    }
+    .footer p,a{
+        font-size: 30px;
+    }
+
+  }
+
+@media (max-width: 770px) {
+    .collapse a{
+        font-size: 10px;
+    }
+    .footer p, a{
+        font-size: 10px;
+    }
+
+  }
 
 
 .accordion {
